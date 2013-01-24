@@ -1,0 +1,70 @@
+<form action="/tfg" method="post"> 
+    
+<h1>TASA DE FILTRACIÓN GLOMERURAL </h1> 
+
+<div class="container-fluid">
+	<div class="row-fluid">
+	</br>
+		<div class="span4">
+			<div class="well"> 
+				
+				<div class="row">
+				  <div class="span3 offset1">Peso</div>
+				  <div class="span3"><input placeholder="Kilogramos" type="number" name="peso" 						class="input-mini" min="0" value = <%=peso%> ></div>
+				</div>
+				
+				<div class="row">
+				  <div class="span3 offset1">Edad</div>
+				  <div class="span4"><input placeholder="Años"type="number" name="anios" 					class="input-mini" min="0" value =<%=anios%>></div>
+				<div class="span3"><input placeholder="Meses"type="number" name="meses" 				class="input-mini" min="0" value =<%=meses%>></br></div>
+			  	</div>
+				
+				<div class="row">
+				  <div class="span3 offset1">Talla</div>
+				  <div class="span3"><input placeholder="Centímetros" type="number"name="talla" 					class="input-mini" min="0" value =<%=talla%>></div>
+				</div>
+				
+				<div class="row">
+				  <div class="span4"> &nbsp Creatinina</div>
+				  <div class="span3"><input placeholder="mg/dL" type="number"name="creatinina" 					class="input-mini" step="0.1" min="0" value =<%=creatinina%>></br></div>
+				</div>
+			
+  			     Sexo
+			     <label class="radio inline">
+			     <input type="radio" name="sexo" id="femenino" value="F"  <%=female%>>
+			     Femenino
+			     </label>
+			     <label class="radio inline">
+			     <input type="radio" name="sexo" id="masculino" value="M" <%=male%>>
+			     Masculino
+			     </label></br></br>
+			     <button type="submit" class="btn btn-primary">Calcular</button>
+		    
+		     </div>  
+	     </div>
+	     
+	     <div class="span4">
+		     <div class="well info">
+			     
+			     Tasa de Filtración Glomerural: 
+			     &nbsp&nbsp&nbsp&nbsp&nbsp<h3> <%="%.2f" %tfg%>  ml/min</h3>			     
+			     <h5> <%=equation%> </h5>
+			</br> </br>
+			
+				
+			<p class="muted">  
+		     TFG según recomendaciones de la ACR </br>
+		     &nbsp&nbsp&nbsp&nbsp&nbsp <strong><%="%.2f" %tfgn%> ml/min</strong></br>		     
+		     <%=equationn%> </p>
+		     
+	             
+		     </div>
+	    
+	    </div>
+     </div>
+</div>
+
+			     
+	
+</form>
+

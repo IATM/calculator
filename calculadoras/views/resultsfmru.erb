@@ -1,0 +1,64 @@
+<form action="/fmru" method="post">  
+	
+   
+  <h1>PROTOCOLO DE URORESONANCIA FUNCIONAL </h1> 	
+  <div class="container-fluid">
+  	<div class="row-fluid"></br>
+  		<div class="span4">
+			</br></br></br>
+  			<div class="well"> 
+  				<div class="row">
+  				  <div class="span3 offset1">Edad:</div>
+  				  <div class="span3"><input placeholder="Años"type="number" name="edad" 					class="input-mini" min="0" value = <%=edad%>> </div>&nbsp&nbsp &nbsp&nbsp <em> años </em>
+  				</div>
+				
+  				<div class="row">
+  				  <div class="span3 offset1">Peso:</div>
+  				  <div class="span3"><input placeholder="kilogramos" type="number" name="peso" 					class="input-mini" min="0" value = <%=peso%>></div> &nbsp&nbsp &nbsp&nbsp<em> Kilogramos </em>
+			 	 </div>
+				 
+				 <button type="submit" class="btn btn-primary">Calcular</button>
+		    
+  		     </div>  
+  	     </div>
+	     
+  	     <div class="span4">
+  		     <div class="well">
+  			      
+     		     	<dl> 
+     		         <dt>HIDRATACION: </dt>
+    
+     		        <dd> SSNN o Lactato de Ringer <strong><%= hydration%> ml</strong> en una hora </dd>
+
+     		         <dt>CATERIZACION VESICAL: </dt>
+    
+     		         <dd>Tamaño del cateter French FR  <strong><%=size%></strong> </dd>
+
+     		         <dt>ADMINISTRACION DEL DIURETICO</dt>
+    
+     		         <dd>Dosis: <strong><%=dosis%> mg </strong>forma de dosificacion:<strong> <%=flow%> mg/ml 			[1mg=0.1ml]</dd></strong>
+
+     		         <dt>ADMINISTRACION DEL CONTRASTE</dt>
+
+     		        <dd>Gadolinio  DTPA [Magnevist (r)] IV <strong><%=gadolinio%> ml</strong>, inyector a flujo 				de<strong> <%=flowga%>  ml/s </strong> con <strong><%=volume%> ml </strong> de lavado </dd>
+   
+     		     </dl>
+  			    			     
+			     
+  		 
+			     
+			     
+			     
+  		     </div>
+	    
+  	    </div>
+       </div>
+  </div>
+
+			     
+	
+  </form>
+  
+
+
+
