@@ -1,0 +1,133 @@
+<form action="/tfgn" method="post"> 
+    
+	
+<h2><em><p class="text-center">TASA DE FILTRACIÓN GLOMERULAR</p></em></h2> 
+</br>
+
+<%if mostrar=="1"%>
+<div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Alerta!</strong> Paciente candidato a participar en el protocolo de Guerbet con TFG= <strong><%="%.2f" %tfgg%>&nbsp&nbsp<%=unitsg%></strong>&nbsp&nbsp según la fórmula de MDER:
+     <img src="/formulag.png" width=300" height="100" alt="MDER" class="img-polaroid">
+
+</div>
+<%end%>
+	
+
+<div class="container-fluid">
+	<div class="row-fluid">
+	
+		<div class="span4">
+			<div class="well"> 
+				
+						<div class="row">
+					  	<div class="span3 offset1">Nombre</div>
+					  	<div class="span4"><input type="text" placeholder="Nombre"  name="nombre" class="input-medium" value= <%=nombre%>></div></div>
+				
+						<div class="row">
+					  	<div class="span3 offset1">ID</div>
+					  	<div class="span3"><input placeholder="CC-TI" type="string" name="id" class="input-mini" value= <%=id%>></div></div>
+				
+				
+				<div class="row">
+				  <div class="span3 offset1">Peso</div>
+				  <div class="span3"><input placeholder="Kilogramos" type="number" name="peso" class="input-mini" min="0" value = <%=peso%>>
+				  </div>&nbsp&nbsp <span class="help-inline">kg</span>
+
+				</div>
+				
+				<div class="row">
+				  <div class="span3 offset1">Edad</div>
+				  <div class="span4"><input placeholder="Años"type="number" name="anios" class="input-mini" min="0" value =<%=anios%>></div>
+				<div class="span3"><input placeholder="Meses"type="number" name="meses" class="input-mini" min="0" value =<%=meses%>></br></div>
+			  	</div>
+				
+				<div class="row">
+				  <div class="span3 offset1">Talla</div>
+				  <div class="span3"><input placeholder="Centímetros" type="number"name="talla" 					class="input-mini" min="0" value =<%=talla%>></div>
+				  &nbsp&nbsp <span class="help-inline">cm</span>
+				</div>
+				
+				<div class="row">
+				  <div class="span4"> &nbsp Creatinina</div>
+				  <div class="span3"><input placeholder="mg/dL" type="number"  step="any" name="creatinina" 					class="input-mini" step="0.1" min="0" value =<%=creatinina%>></br></div>
+				  &nbsp&nbsp <span class="help-inline">mg/dL</span>
+				</div>
+			
+  			     Sexo
+			     <label class="radio inline">
+			     <input type="radio" name="sexo" id="femenino" value="F"  <%=female%>>
+			     Femenino
+			     </label>
+			     <label class="radio inline">
+			     <input type="radio" name="sexo" id="masculino" value="M" <%=male%>>
+			     Masculino
+			     </label></br></br>
+			     
+				 
+				 <div class="row">
+                 <div class="span6">&nbsp Afrodescendiente </div>
+                 <div class="span6"><label class="checkbox">
+                  <input type="checkbox" name="afrod" value="y" <%=afrod%>>
+				  </br></br></br>
+				  
+			      </label> </div>
+			  <button type="submit" class="btn btn-primary">Calcular</button></p>
+			  </div>
+		    
+		     </div>  
+	     </div>
+	     
+	     <div class="span8">
+		     <div class="well info">
+				 
+			     <div class="span4 offset8">Fecha: <%=date%> </div>
+			    <h4> <%=name%> para el paciente: <em><%=nombre%></em> con ID: <em> <%=id%> </em></h4> 
+			     
+		
+	
+				<div class ="well well-small">
+					
+			 			<h4><strong><%="%.2f" %tfgo%> &nbsp&nbsp<%=unitso%></strong> </h4>
+		   		     <div class="row">
+		   				 <div class="span4 offset1"> <%=equationo%> </div>
+						 <div class="span2 offset5"><p class="muted"><small><em>Tradicionales</em></small></p></div>
+					 </div>
+							     
+		 		</div>
+				
+			 <div class="well well-small">
+				 
+			 <h4><strong><p class="muted"><%="%.2f" %tfgn%> &nbsp&nbsp<%=unitsn%></p></strong></h4>	     
+		     <div class="row">
+				 <div class="span4 offset1"><%=equationn%> </div>
+				 <div class="span4 offset3"><p class="muted"><small><em>Recomendada por el ACR</em></small></p></div>
+			 </div>
+			 </div>
+			
+			 
+			 <div class="well well-small">
+			 <h4><strong><p class="muted"><%="%.2f" %tfgg%> &nbsp&nbsp<%=unitsg%></strong></h4>	
+			     <div class="row">
+					 <div class="span4 offset1"><%=equationg%> </div>
+					 <div class="span3 offset4"><p class="muted"><small><em>Protocolo Guerbet</em></small></p></div>
+					 </div>
+					 
+		 	</div></p>
+		
+		
+		
+		
+		
+	             
+		     </div>
+	    
+	    </div>
+     </div>
+</div>
+
+
+	<script src="bootstrap.js"></script>	     
+	
+</form>
+
