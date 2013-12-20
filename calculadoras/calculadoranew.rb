@@ -7,6 +7,7 @@
 require 'rubygems'  
 require 'sinatra'
 require 'date'
+require 'pony'
 
 configure do
  set :public_folder, Proc.new { File.join(root, "static") }
@@ -16,6 +17,7 @@ end
 
 get '/tfgn' do  
     erb:tfgn
+    
 end
 post '/tfgn' do
   peso=params[:peso].to_i
@@ -30,6 +32,7 @@ post '/tfgn' do
   nombre=params[:nombre].split(' ').map {|w| w.capitalize }.join(' ')
   id=params[:id].to_str
   mostrar="2"
+  ip=request.ip
   
   if sexo=="F"
     f="checked"
@@ -53,10 +56,30 @@ post '/tfgn' do
   
   if gfrg>30 && gfrg<59 && edad_anos>18
     mostrar="1"
+    body = erb(:email, layout: false , :locals => { :gfrg => gfrg})
+    require 'pony'
+     Pony.mail({
+        :to => 'arango8316@gmail.com',
+        :subject => "Paciente candidato para el Protocolo de Guerbet",
+        :body => body,
+        :via => :smtp,
+        :via_options => {
+         :address              => 'smtp.gmail.com',
+         :port                 => '587',
+         :enable_starttls_auto => true,
+         :user_name            => 'alertasiatm@gmail.com',
+         :password             => 'Iatm2012',
+         :authentication       => :plain, 
+         :domain               => "localhost.localdomain" 
+         }
+        })
   end
   
   
+  
   erb:resultstfgn, :locals => {:tfgn =>gfrn, :equationn=> equationn, :unitsn=>unitsn,:tfgg =>gfrg, :equationg=> equationg, :unitsg=>unitsg,:name=>name,:tfgo =>gfro, :equationo=> equationo,:unitso=>unitso,:edad=>edad,:peso=>peso,:anios=>edad_anos,:meses=>edad_meses,:female=>f,:male=>m,:talla=>talla,:creatinina=>creatinina,:afrod=>afd,:date=>date,:nombre=>nombre,:id=>id,:mostrar=>mostrar}
+  
+
 end
 
 

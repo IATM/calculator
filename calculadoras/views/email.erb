@@ -1,0 +1,21 @@
+Cordial Saludo,
+
+El cálculo de TFG para el paciente <%= params[:nombre] %> ,con identificación <%= params[:id] %>, empleando la fórmula MDER arrojó un valor de <%=gfrg %> ml/min/1.73m2 por lo tanto es un paciente candidato a participar en el protocolo de Guerbet. 
+ 
+Parámetros:
+
+
+Peso:<%= params[:peso] %>
+Edad: <%= params[:anios] %> años
+Talla: <%= params[:talla] %> cm
+Creatinina: <%= params[:creatinina] %> mg/dL
+Sexo:<%= params[:sexo] %>
+Afrodescendiente:<%= params[:afrod] %> 
+
+
+Fue calculado en la estación con ip: <%=request.ip%>
+
+
+Cordialmente
+
+Equipo de Tecnología IATM
