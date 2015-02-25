@@ -59,7 +59,7 @@ post '/tfgn' do
     body = erb(:email, layout: false , :locals => { :gfrg => gfrg})
     require 'pony'
      Pony.mail({
-        :to => 'arango8316@gmail.com',
+        :to => '',
         :subject => "Paciente candidato para el Protocolo de Guerbet",
         :body => body,
         :via => :smtp,
@@ -67,8 +67,8 @@ post '/tfgn' do
          :address              => 'smtp.gmail.com',
          :port                 => '587',
          :enable_starttls_auto => true,
-         :user_name            => 'alertasiatm@gmail.com',
-         :password             => 'Iatm2012',
+         :user_name            => '',
+         :password             => '',
          :authentication       => :plain, 
          :domain               => "localhost.localdomain" 
          }
