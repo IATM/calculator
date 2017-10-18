@@ -29,6 +29,7 @@ post '/tfgn' do
   afrod=params[:afrod].to_s
   d=Date.today
   date=d.to_s
+  #date="2014-04-28"
   nombre=params[:nombre].split(' ').map {|w| w.capitalize }.join(' ')
   id=params[:id].to_str
   mostrar="2"
@@ -54,28 +55,35 @@ post '/tfgn' do
   gfrn, equationn, unitsn = calculate_gfr_nuevo(edad,sexo,talla,creatinina,afrod) #con las formulas recomendadas por la  ACR
   gfro, equationo, unitso = calculate_gfr(edad,sexo,peso,talla,creatinina) #con las formulas antiguas
   
-  if gfrg>30 && gfrg<59 && edad_anos>18
-    mostrar="1"
-    body = erb(:email, layout: false , :locals => { :gfrg => gfrg})
-    require 'pony'
-     Pony.mail({
-        :to => '',
-        :subject => "Paciente candidato para el Protocolo de Guerbet",
-        :body => body,
-        :via => :smtp,
-        :via_options => {
-         :address              => 'smtp.gmail.com',
-         :port                 => '587',
-         :enable_starttls_auto => true,
-         :user_name            => '',
-         :password             => '',
-         :authentication       => :plain, 
-         :domain               => "localhost.localdomain" 
-         }
-        })
-  end
+  puts "#{gfrg}, #{equationg} #{unitsg}"
+  puts "#{gfrn}, #{equationn} #{unitsn}"
+   puts "#{gfro}, #{equationo} #{unitso}"
+
+# if gfrg>30 && gfrg<59 && edad_anos>18
+#   mostrar="1"
+#   body = erb(:email, layout: false , :locals => { :gfrg => gfrg, :nombre=>nombre})
+
+#   require 'pony'
+#    Pony.mail({
+#       #:to => 'arango8316@gmail.com',
+#       :to => 'catalinabustam@gmail.com',
+#       :subject => "Paciente candidato para el Protocolo de Guerbet",
+#       :body => body, 
+#       :charset => 'UTF-8',
+#       :via => :smtp,
+#       :via_options => {
+#        :address              => 'smtp.gmail.com',
+#        :port                 => '587',
+#        :enable_starttls_auto => true,
+#        :user_name            => 'xxxxm@gxx.com',
+#        :password             => 'xxxxx',
+#        :authentication       => :plain, 
+#        :domain               => "localhost.localdomain" 
+#        }
+#       })
+# end
   
-  
+  puts "mostrar #{mostrar}"
   
   erb:resultstfgn, :locals => {:tfgn =>gfrn, :equationn=> equationn, :unitsn=>unitsn,:tfgg =>gfrg, :equationg=> equationg, :unitsg=>unitsg,:name=>name,:tfgo =>gfro, :equationo=> equationo,:unitso=>unitso,:edad=>edad,:peso=>peso,:anios=>edad_anos,:meses=>edad_meses,:female=>f,:male=>m,:talla=>talla,:creatinina=>creatinina,:afrod=>afd,:date=>date,:nombre=>nombre,:id=>id,:mostrar=>mostrar}
   
@@ -159,7 +167,6 @@ def cockroft(sexo, edad, peso, creatinina) # La antigua de adultos
 	else
 		k=1
 	end
-	#gfr=
   (((140-edad)*peso)*k/(72*creatinina))
   #equation='Cockroft'
   #output=[gfr, equation]
@@ -218,7 +225,6 @@ def mder(edad_meses,sexo,creatinina,afrod) #Para adultos recomendada por Guerbet
         end
 	mdr=creatinina**-1.154
     mdr=mdr*edad** -0.203
-	#gfr=
   186*mdr*k
   #equation= 'MDRD'
   #output=[gfr, equation]
@@ -231,6 +237,7 @@ def calculate_gfr(edad_meses,sexo,peso,talla,creatinina) # Con las formulas viej
 		puts "Usando la formula de Cockroft-Gault..."
 		puts "Edad: #{edad}, Sexo: #{sexo}, Peso: #{peso}, Creatinina: #{creatinina}"
     gfr=cockroft(sexo, edad, peso, creatinina)
+    puts gfr
 		equation = "Cockroft-Gault"
     return [gfr,equation,units]
 	else
@@ -248,8 +255,9 @@ def calculate_gfr_nuevo(edad_meses,sexo,talla,creatinina,afrod) # Con las formul
 	if edad > 18
 		puts "Usando la formula de MDRD..."
 		puts "Edad: #{edad}, Sexo: #{sexo}, Creatinina: #{creatinina}"
-                equation="MDRD"
+    equation="MDRD"
 		gfr=mdrd(edad_meses,sexo,creatinina,afrod)
+    puts "#{gfr}"
 	else
 		puts "Usando la formula de Bedside Schwartz..."
 		puts "Talla: #{talla}, Creatinina: #{creatinina}"
@@ -265,11 +273,12 @@ def calculate_gfr_guerbet(edad_meses,sexo,talla,creatinina,afrod) # Con las form
 
 	if edad > 18
 		puts "Usando la formula de MDER..."
-		puts "Edad: #{edad}, Sexo: #{sexo}, Creatinina: #{creatinina}"
+		puts "Edad: #{edad_meses}, Sexo: #{sexo}, Creatinina: #{creatinina}, Afro: #{afrod}", 
                 equationn="MDER"
                 units="ml/min/1.73m2"
                 name="Tasa de filtracion glomerular estimada"
 		gfr=mder(edad_meses,sexo,creatinina,afrod)
+    puts "#{gfr}"
     
   else
   		puts "Usando la formula de Schwartz..."
